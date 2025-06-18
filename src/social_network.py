@@ -32,7 +32,6 @@ class SocialNetwork:
                 if friend not in self.members:
                     self.members[friend] = Member(friend)
                 self.members[member].add_friend(friend)
-                self.members[friend].add_friend(member)
 
         if len(self.members) != expected_members:
             raise ValueError("The number of members does not match the number specified.")
