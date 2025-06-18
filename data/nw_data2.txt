@@ -1,19 +1,15 @@
-15
-Adam Bob
-Bob Amir
-Bob Mia
-Chris Zia
-Mia Amir
-Liz John
-John Karen
-Karen Steve
-Steve Laura
-Laura Mike
-Mike Nancy
-Nancy Peter
-Peter Olivia
-Olivia Quentin
-Quentin Rachel
+20
+Alice Bob
+Bob Charlie
+Diana Eve
+Frank
+George Henry
+Isaac John
+Kevin Liam
+Mike
+Nina Olivia
+Peter Quinn
 Rachel Steve
-Chris Adam
-Liz Mia
+Tina
+Alice Isaac
+Alice Steve

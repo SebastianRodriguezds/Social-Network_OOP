@@ -36,6 +36,11 @@ class SocialNetwork:
 
         if len(self.members) != expected_members:
             raise ValueError("The number of members does not match the number specified.")
+        
+        for member in self.members.values():
+            for friend in member.friends:
+                if member.name not in self.members[friend].friends:
+                    raise ValueError(f"Inconsistent friendship: {member.name} is friends with {friend}, but not vice versa.")
     
     def display_network(self):
         for member in sorted(self.members.values(), key=lambda x: x.name):
@@ -78,3 +83,47 @@ class SocialNetwork:
                 recommended = candidate
 
         return recommended if max_common > 0 else None
+    
+    def get_friend_count(self, member_name):
+        if member_name not in self.members:
+            raise ValueError(f"Member '{member_name}' does not exist.")
+        return len(self.members[member_name].friends)
+    
+    def get_least_connected_members(self):
+        if not self.members:
+            return [], []
+        
+        friends_counts = {name: len(member.friends) for name, member in self.members.items()}
+        no_friends = [name for name, count in friends_counts.items() if count == 0]
+
+        non_zero_counts = [count for count in friends_counts.values() if count > 0]
+        if not non_zero_counts:
+            least_friends = []
+        else:
+            min_count = min(non_zero_counts)
+            least_friends = [name for name, count in friends_counts.items() if count == min_count]
+
+        return least_friends, no_friends
+    
+    def get_relationship(self, member_name):
+        if member_name not in self.members:
+            raise ValueError(f"Member ''{member_name}' does not exist.")
+        
+        return sorted(self.members[member_name].friends)
+    
+    def social_indirect_relationships(self):
+        indirect_friends = {}
+
+        for member in self.members:
+            direct_friends = self.members[member].friends
+            indirect_set = set()
+
+            for friend in direct_friends:
+                friend_friends = self.members[friend].friends
+                for fof in friend_friends:
+                    if fof != member and fof not in direct_friends:
+                        indirect_set.add(fof)
+            
+            indirect_friends[member] = sorted(indirect_set)
+        
+        return indirect_friends
