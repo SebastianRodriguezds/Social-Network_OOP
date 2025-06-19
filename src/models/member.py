@@ -1,6 +1,8 @@
-class Member:
+from user import User
+
+class Memeber(User):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
         self.friends = set()
 
     def add_friend(self, friend_name):

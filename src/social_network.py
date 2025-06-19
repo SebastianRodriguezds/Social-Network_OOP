@@ -1,5 +1,5 @@
 import os
-from models.member import Member
+from models.user import Member
 
 class SocialNetwork:
     def __init__(self):
@@ -106,7 +106,7 @@ class SocialNetwork:
     
     def get_relationship(self, member_name):
         if member_name not in self.members:
-            raise ValueError(f"Member ''{member_name}' does not exist.")
+            raise ValueError(f"Member '{member_name}' does not exist.")
         
         return sorted(self.members[member_name].friends)
     
